@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     $immagine = file_get_contents($_FILES['immagine']['tmp_name']);
 
     $nomeDrink = $_POST['nome'];
-    $tempoNecessario = $_POST['tempoNecessario'];
+    $tempoPreparazione = $_POST['tempoNecessario'];
     $ingredienti = $_POST['ingredienti'];
     $descrizione = $_POST['descrizione'];
 
@@ -24,9 +24,10 @@ if (isset($_POST['submit'])) {
     $idImmagine = $conn->insert_id;
 
 
-    $sql = ("INSERT INTO drink (nomeDrink, tempoNecessatio, ingredienti, descrizione, idImmagine) VALUES (?, ?, ?, ?, ?)");
-    $sql = $conn->prepare("sssss", $nomeDrink, $tempoNecessario, $ingredienti, $descrizione, $idImmagine);
     
+    $stmt = $conn->prepare("INSERT INTO drink (nome, tempoPreparazione, ingredienti, descrizione, idImmagine) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssi",  $nomeDrink, $tempoPreparazione, $ingredienti, $descrizione, $idImmagine);
+    $stmt->execute();
 
     
     if ($stmt->execute()) {
