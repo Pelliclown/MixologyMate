@@ -21,7 +21,12 @@ if (isset($_POST['submit'])) {
 
     $stmt = $conn->prepare("INSERT INTO immaginidrink (nome, tipo, immagine) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $nome, $tipo, $immagine);
-    $idImmagine = $conn->insert_id;
+    
+    if ($stmt->execute()) {  
+        $idImmagine = $conn->insert_id;  
+    } else {
+        die("Errore nell'inserimento dell'immagine: " . $stmt->error);
+    }
 
 
     
@@ -32,7 +37,7 @@ if (isset($_POST['submit'])) {
     
     if ($stmt->execute()) {
         echo "Immagine caricata con successo! <br>";
-        echo "<img src='visualizza.php?id=" . $conn->insert_id . "' width='300px'>";
+        header ("location: visualizza.php?id=".$idImmagine);
     } else {
         echo "Errore nel caricamento dell'immagine.";
     }
