@@ -1,25 +1,23 @@
-# CakePHP 3
+# gitignore template for 1C-Bitrix, a PHP-based CMS
+# website: https://www.1c-bitrix.ru
 
-/vendor/*
-/config/app.php
+#Exclude all of core files
+/bitrix/*
 
-/tmp/cache/models/*
-!/tmp/cache/models/empty
-/tmp/cache/persistent/*
-!/tmp/cache/persistent/empty
-/tmp/cache/views/*
-!/tmp/cache/views/empty
-/tmp/sessions/*
-!/tmp/sessions/empty
-/tmp/tests/*
-!/tmp/tests/empty
+#But not the templates and non bitrix components
+!/bitrix/templates
+!/bitrix/components
+/bitrix/components/bitrix
 
-/logs/*
-!/logs/empty
+#Exclude bitrix gadgets
+!/bitrix/gadgets
+/bitrix/gadgets/bitrix
 
-# CakePHP 2
+#User can use that directory to store some stuff, but it's not really recommended, just use /local instead of this
+!/bitrix/php_interface/
 
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+#Exclude database configs
+/bitrix/php_interface/dbconn.php
+
+#Exclude default file storage directory
+/upload/
