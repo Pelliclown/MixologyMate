@@ -45,7 +45,7 @@
     <div>
         <h2>Accedi</h2>
         <form action="VerificaLogin.php" method="POST">
-            <input type="Nickname/Email" name="nicknameEmail" placeholder="nicknameEmail" required>
+            <input type="Nickname" name="nickname" placeholder="nickname" required>
             <input type="password" name="password" placeholder="password" required>
             <input type="submit" value="Login">
         </form>

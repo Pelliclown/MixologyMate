@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION['idUtente'])) {
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,3 +156,9 @@
     }
 </style>
 </html>
+
+<?php
+} else {
+    header("location: Login.php");
+}
+?>

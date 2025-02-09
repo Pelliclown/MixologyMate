@@ -1,8 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MixologyMate | Visualizza Drink</title>
+    <link rel="icon" type="image/png" href="immagini/Logo app schede.png">
+</head>
+<body>
+    
+</body>
+</html>
+
 <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "mixologymate";
+
+session_start();
+
+if (isset($_SESSION['username'])) {
 
 $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
@@ -31,6 +48,8 @@ if (isset($_GET['id'])) {
     }
     $stmt->close();
 
+    $idCreatore = $_SESSION['username'];
+
     $stmt = $conn->prepare("SELECT nome, tempoPreparazione, ingredienti, descrizione, idCreatore FROM drink WHERE idImmagine = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -52,4 +71,12 @@ if (isset($_GET['id'])) {
 }
 
 $conn->close();
+
+} else {
+    header("location: Login.php");
+}
 ?>
+
+<html>
+    <a href="ListaDrink.php">Torna ai drink</a>
+</html>

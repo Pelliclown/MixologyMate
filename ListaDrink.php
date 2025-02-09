@@ -82,8 +82,9 @@ $sql = "SELECT * FROM drink";
                     echo "<td>".$row['ingredienti']."</td>";
                     echo "<td>".$row['descrizione']."</td>";
                     echo "<td>".$row['idCreatore']."</td>";
-                    echo "<td>".$row['nomeImmagine']."</td>";
+                    echo "<td>".$row['idImmagine']."</td>";
                     echo "</tr>";
+                    $idImmagine = $row['idImmagine'];
                 }
                 echo "</table>";
             }
@@ -98,10 +99,10 @@ $sql = "SELECT * FROM drink";
     die("Connessione fallita: " . $mysqli->connect_error);
     }
 
-    $id = $_GET['id']; // Prendiamo l'ID dell'immagine dalla richiesta
+     
 
-    $stmt = $mysqli->prepare("SELECT tipologiaImmagine, immagine FROM immaginidrink WHERE id = ?");
-    $stmt->bind_param("i", $id);
+    $stmt = $mysqli->prepare("SELECT * tipo, immagine FROM  immaginidrink where id = $idImmagine");
+    $stmt->bind_param("i", $idImmagine);
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($tipo, $immagine);
