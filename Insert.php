@@ -8,8 +8,7 @@
 </head>
 <body>
     
-</body>
-</html>
+
 <?php
 
     $host = "127.0.0.1";
@@ -54,11 +53,17 @@
     $connessione->close();
 
 ?>
+</body>
+</html>
 <style>
     a{
         text-decoration: none;
-        align-items: center;
+        color: #3897f0;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: color 0.3s;
     }
+
     h2{
         color: black;
         text-align: center;
@@ -70,5 +75,11 @@
             background-size: 400px  400px;
             background-repeat: no-repeat;
             background-position: center 100px;
+            background-color: #f0f8ff;
     }
+    body {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            
+        }
 </style>

@@ -33,7 +33,7 @@
             } else {
                 die("Errore nell'inserimento dell'immagine: " . $stmt->error);
             }
-
+            $stmt->close();
             $idCreatore = $_SESSION['idUtente'];
             
             $stmt = $conn->prepare("INSERT INTO drink (nome, tempoPreparazione, ingredienti, descrizione, idImmagine, idCreatore) VALUES (?, ?, ?, ?, ?, ?)");
@@ -43,7 +43,7 @@
             
             if ($stmt->execute()) {
                 echo "Immagine caricata con successo! <br>";
-                header ("location: visualizza.php?id=".$idImmagine);
+                header ("location: Visualizza.php?id=".$idImmagine);
             } else {
                 echo "Errore nel caricamento dell'immagine.";
             }

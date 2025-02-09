@@ -30,7 +30,7 @@
         $idUtente = $row['idUtente']; 
 
         $_SESSION['idUtente'] = $idUtente;
-        header("Location: HomeLogged.php");
+        header("Location: ListaDrinkLogged.php");
         
     }else{
         echo "Email o password errati , riprova";
