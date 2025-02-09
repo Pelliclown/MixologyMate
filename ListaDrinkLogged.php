@@ -141,14 +141,18 @@
             $stmt->bind_result($tipo, $immagine);
             $stmt->fetch();
 
-            
+            $idDrink = $row['idDrink'];
+
             echo '<div class="drink-card">';
             if ($immagine) {
                 $immagineBase64 = base64_encode($immagine);
-                echo "<img src='data:$tipo;base64,$immagineBase64' alt='Immagine del drink'>";
+                echo "<a href='PaginaDrink.php?idDrink=" . $idDrink."'>
+                        <img src='data:$tipo;base64,$immagineBase64' alt='Immagine del drink'>
+                      </a>";
             } else {
                 echo "<img src='default-image.jpg' alt='Immagine del drink'>"; 
             }
+            
 
             echo '<div class="drink-info">';
             echo "<h3>" . $row['nome'] . "</h3>";
