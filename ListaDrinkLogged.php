@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['idUtente'])){
+
+
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -168,6 +176,10 @@
     }
 
     $conn->close();
+}else{
+    header("location: Login.php");
+}
+
     ?>
 </body>
 </html>
