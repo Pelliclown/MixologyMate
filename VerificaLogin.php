@@ -4,10 +4,8 @@
     $user = "root";
     $password = "";
     $database = "mixologymate";
-
     session_start();
 
-    
     $connessione = new mysqli($host,$user,$password,$database);
 
     if($connessione === false){

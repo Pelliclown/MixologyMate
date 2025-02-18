@@ -241,6 +241,7 @@ if ($result->num_rows > 0) {
 
 echo '<div class="reviews-container">';
 
+
 $stmtRecensioni = $conn->prepare("SELECT descrizione, numeroStelle, idCreatore FROM recensioni WHERE idDrink = ?");
 $stmtRecensioni->bind_param("i", $idDrink);
 $stmtRecensioni->execute();

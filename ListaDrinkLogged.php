@@ -164,9 +164,6 @@ if(isset($_SESSION['idUtente'])){
 
             echo '<div class="drink-info">';
             echo "<h3>" . $row['nome'] . "</h3>";
-            echo "<p><strong>Tempo di preparazione:</strong> " . $row['tempoPreparazione'] . "</p>";
-            echo "<p><strong>Ingredienti:</strong> " . $row['ingredienti'] . "</p>";
-            echo "<p><strong>Descrizione:</strong> " . $row['descrizione'] . "</p>";
             echo "<p class='creator'>Creato da: $nickname</p>";
             echo '</div>';
             echo '</div>';

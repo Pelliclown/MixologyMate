@@ -114,13 +114,14 @@
 
     session_start();
 
-    if (isset($_SESSION['username'])) {
+
+    if (isset($_SESSION['idUtente'])) {
 
     $conn = new mysqli($servername, $username, $password, $database);
     if ($conn->connect_error) {
         die("Connessione fallita: " . $conn->connect_error);
     }
-
+    
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
@@ -147,7 +148,7 @@
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->store_result();
-
+        
         if ($stmt->num_rows > 0) {
             $stmt->bind_result($nome, $tempoPreparazione, $ingredienti, $descrizione, $idCreatore);
             $stmt->fetch();
@@ -178,8 +179,8 @@
 
     $conn->close();
 
-    } else {
-        header("location: Login.php");
+     } else {
+         header("location: Login.php");
     }
     ?>
 

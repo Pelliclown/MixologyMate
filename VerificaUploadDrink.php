@@ -38,7 +38,6 @@
             
             $stmt = $conn->prepare("INSERT INTO drink (nome, tempoPreparazione, ingredienti, descrizione, idImmagine, idCreatore) VALUES (?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssii",  $nomeDrink, $tempoPreparazione, $ingredienti, $descrizione, $idImmagine, $idCreatore);
-            $stmt->execute();
 
             
             if ($stmt->execute()) {
@@ -52,8 +51,8 @@
        
         $conn->close();
     }    
-    }else{
-        header("location: Login.php");
+     }else{
+         header("location: Login.php");
 }
 
 ?>
