@@ -6,6 +6,9 @@
     $database = "mixologymate";
     session_start();
 
+
+    if (isset($_SESSION['idUtente'])) {
+
     $connessione = new mysqli($host,$user,$password,$database);
 
     if($connessione === false){
@@ -35,6 +38,8 @@
     }
 
     $connessione->close();
-
+}else{
+    header("location: Login.php");
+}
 
 ?>

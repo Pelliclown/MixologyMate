@@ -148,7 +148,10 @@
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->store_result();
-        
+
+
+        echo $stmt->store_result();
+
         if ($stmt->num_rows > 0) {
             $stmt->bind_result($nome, $tempoPreparazione, $ingredienti, $descrizione, $idCreatore);
             $stmt->fetch();
