@@ -7,7 +7,7 @@
     session_start();
 
 
-    if (isset($_SESSION['idUtente'])) {
+   
 
     $connessione = new mysqli($host,$user,$password,$database);
 
@@ -38,8 +38,6 @@
     }
 
     $connessione->close();
-}else{
-    header("location: Login.php");
-}
+
 
 ?>
