@@ -10,7 +10,7 @@ $nickname =  $connessione->real_escape_string($_POST['nickname']);
 $password =  $connessione->real_escape_string($_POST['password']);
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$sql_select = "SELECT * FROM gestionepassword WHERE nickname = '$nickname'";
+$sql_select = "SELECT * FROM utenti WHERE nickname = '$nickname'";
 if($result = $connessione->query($sql_select)){
     if($result->num_rows == 1){ //solo se è presente solo una riga
         echo "<script>

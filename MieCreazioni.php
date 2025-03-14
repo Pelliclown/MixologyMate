@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (isset($_SESSION['idUtente'])) {
-    $idUtente = $_SESSION['idUtente']; 
+if (isset($_SESSION['nickname'])) {
+    $idUtente = $_SESSION['nickname']; 
 
    
     $host = "127.0.0.1";
@@ -17,12 +17,7 @@ if (isset($_SESSION['idUtente'])) {
     }
 
 
-    $stmt = $conn->prepare("SELECT nickname FROM utenti WHERE idUtente = ?");
-    $stmt->bind_param("i", $idUtente);
-    $stmt->execute();
-    $stmt->bind_result($nickname);
-    $stmt->fetch();
-    $stmt->close();
+
 
    
     $stmt = $conn->prepare("SELECT d.*, i.tipo, i.immagine FROM drink d
@@ -53,7 +48,7 @@ if (isset($_SESSION['idUtente'])) {
         <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $idDrink = $row['idDrink'];
+                $idDrink = $row['nickname'];
                 $immagine = $row['immagine'];
                 $tipo = $row['tipo'];
 

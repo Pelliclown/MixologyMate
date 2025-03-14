@@ -3,23 +3,17 @@ use mixologymate;
 
 
 create table if not exists utenti(
-	idUtente int(5) primary key auto_increment not null,
-	immagine varchar(200)
-); 
-
-create table if not exists gestionePassword(
 	nickname varchar(30) primary key not null,
 	password varchar(30) not null,
-    idUtente int(5) not null,
-    foreign key (idUtente) references utenti(idUtente)
+	immagine varchar(200)
 );
  
 create table if not exists drink(
 	idDrink int(5) primary key auto_increment not null,
-	idCreatore int(5),
+	nickname varchar(30),
 	immagine varchar(200),
     dataCreazione date,
-	foreign key (idCreatore) references utenti(idUtente)
+	foreign key (nickname) references utenti(nickname)
 ); 
 
 create table if not exists gestioneDrink(
@@ -32,11 +26,11 @@ create table if not exists gestioneDrink(
 create table if not exists recensioni(
 	idRecensione int(5) primary key auto_increment not null,
 	descrizione varchar(250) not null,
-	idCreatore int(5),
+	nicknameCreatore varchar(30),
 	numeroStelle int(1) not null,
     dataCreazione date,
 	idDrink int(5) not null,
-	foreign key (idCreatore) references utenti(idUtente),
+	foreign key (nicknameCreatore) references utenti(nickname),
 	foreign key (idDrink) references drink(idDrink)
 ); 
 
@@ -55,8 +49,8 @@ create table if not exists associazioneIngredienti(
 
 create table if not exists preferiti(
 	idDrink int(5),
-	idUtente int(3), 
-	foreign key (idUtente) references utenti(idUtente),
+	nickname varchar(30), 
+	foreign key (nickname) references utenti(nickname),
 	foreign key (idDrink) references drink(idDrink)
 );
 

@@ -25,7 +25,7 @@
     $password = $_REQUEST['password'];
 
 
-    $sql = "INSERT INTO gestionepassword (nickname, password) VALUES (?,?)";
+    $sql = "INSERT INTO utenti (nickname, password) VALUES (?,?)";
 
     if($statement = $connessione->prepare($sql)){
         ($statement->bind_param("ss", $nickname, $password));

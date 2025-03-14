@@ -3,8 +3,15 @@
 
     session_start();
     
-    if (isset($_SESSION['idUtente'])) {
+    if (isset($_SESSION['nickname'])) {
         
+    // Connessione al database
+    $host = "localhost";
+    $user = "root"; 
+    $password = ""; 
+    $database = "mixologymate";
+
+    $conn = new mysqli($host, $password, $password, $database);
 
     // Cartella in cui salvare le immagini
     $targetDir = "images/";
@@ -27,13 +34,7 @@
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
             echo "L'immagine è stata caricata con successo.<br>";
 
-            // Connessione al database
-            $servername = "localhost";
-            $username = "root"; 
-            $password = ""; 
-            $dbname = "prova";
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
+         
 
             // Controllo connessione
             if ($conn->connect_error) {
@@ -81,10 +82,10 @@
 
 
 
-        $idCreatore = $_SESSION['idUtente'];
+        $idCreatore = $_SESSION['nickname'];
         
-        $stmt = $conn->prepare("INSERT INTO drink (nome, tempoPreparazione, ingredienti, descrizione, idImmagine, idCreatore) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssii",  $nomeDrink, $tempoPreparazione, $ingredienti, $descrizione, $idImmagine, $idCreatore);
+        $stmt = $conn->prepare("INSERT INTO drink (nome, nickname, Immagine, datareazione) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("sssi",  $nomeDrink, $nickname, $Immagine, $datareazione);
         $stmt->execute();
 
         $stmt->close();
