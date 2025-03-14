@@ -20,22 +20,25 @@
     if( $nickname=="ciao" and $password==1234){
         header("Location: Admin.php");
     } 
-   
-    if($sql = "SELECT * FROM gestionepassword WHERE nickname='$nickname' and password = '$password'"){
-        echo "Accesso effettuato con successo bentornato ";
-        
-        $sql = "SELECT idUtente FROM utenti WHERE nickname='$nickname' AND password = '$password'";
-        $result = $connessione->query($sql);
-        $row = $result->fetch_assoc();
+    $sql = "SELECT * FROM gestionepassword WHERE nickname='$nickname' and password = '$password'";
+$result = $connessione->query($sql);
 
-        $idUtente = $row['idUtente']; 
+if($result && $result->num_rows > 0) {
+    echo "Accesso effettuato con successo bentornato ";
+    
+    $sql = "SELECT idUtente FROM utenti WHERE nickname='$nickname' AND password = '$password'";
+    $result = $connessione->query($sql);
+    $row = $result->fetch_assoc();
 
-        $_SESSION['idUtente'] = $idUtente;
-        header("Location: ListaDrinkLogged.php");
-        
-    }else{
-        echo "Email o password errati , riprova";
-    }
+    $idUtente = $row['idUtente']; 
+
+    $_SESSION['idUtente'] = $idUtente;
+    header("Location: ListaDrinkLogged.php");
+    
+} else {
+    echo "Email o password errati , riprova";
+    header("Location: Login.php");
+}
 
     $connessione->close();
 
