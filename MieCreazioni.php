@@ -1,26 +1,13 @@
 <?php
+
+include 'Connessione.php';
+
 session_start();
 
 if (isset($_SESSION['nickname'])) {
     $idUtente = $_SESSION['nickname']; 
 
-   
-    $host = "127.0.0.1";
-    $user = "root";
-    $password = "";
-    $database = "mixologymate";
-
-    $conn = new mysqli($host, $user, $password, $database);
-
-    if ($conn->connect_error) {
-        die("Connessione fallita: " . $conn->connect_error);
-    }
-
-
-
-
-   
-    $stmt = $conn->prepare("SELECT d.*, i.tipo, i.immagine FROM drink d
+    $stmt = $connessione->prepare("SELECT d.*, i.tipo, i.immagine FROM drink d
                              JOIN immaginidrink i ON d.idImmagine = i.idimmagine
                              WHERE d.idCreatore = ?");
     $stmt->bind_param("i", $idUtente);
@@ -37,7 +24,7 @@ if (isset($_SESSION['nickname'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MixologyMate | Profilo di <?php echo htmlspecialchars($nickname); ?></title>
     <link rel="icon" type="image/png" href="immagini/Logo app schede.png">
-    <link rel="stylesheet" href="style/styleVisualizza.css">
+    <link rel="stylesheet" href="style/MieCreazioni.css">
 
 </head>
 <body>

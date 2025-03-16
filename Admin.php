@@ -33,11 +33,7 @@ a{
 </style>
 <body>
         <?php
-            $host = "127.0.0.1";
-            $user = "root";
-            $password = "";
-            $database = "mixologymate";
-            $connessione = new mysqli($host, $user, $password, $database);
+            include 'Connessione.php';
 
             $sql = "SELECT * FROM utenti";
             $result = $connessione -> query("select * from utenti");

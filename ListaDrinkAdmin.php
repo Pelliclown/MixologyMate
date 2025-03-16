@@ -46,16 +46,8 @@
 </html>
 
 <?php
-$host = "127.0.0.1";
-$user = "root";
-$password = "";
-$database = "mixologymate";
 
-$conn = new mysqli($host, $user, $password, $database);
-
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
+include 'Connessione.php';
 
 $sql = "SELECT * FROM drink";
 $result = $conn->query($sql);

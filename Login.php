@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MixologyMate | Accedi</title>
     <link rel="icon" type="image/png" href="immagini/Logo app schede.png">
-    <link rel="stylesheet" href="style/styleLogin.css"> 
+    <link rel="stylesheet" href="style/Login.css"> 
 </head>
 <body>
 

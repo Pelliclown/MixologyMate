@@ -1,5 +1,7 @@
 <?php
 
+include 'Connessione.php';
+
 session_start();
 
 if(isset($_SESSION['nickname'])){
@@ -114,16 +116,6 @@ if(isset($_SESSION['nickname'])){
     </div>
 
     <?php
-    $host = "127.0.0.1";
-    $user = "root";
-    $password = "";
-    $database = "mixologymate";
-
-    $conn = new mysqli($host, $user, $password, $database);
-
-    if ($conn->connect_error) {
-        die("Connessione fallita: " . $conn->connect_error);
-    }
 
     $sql = "SELECT * FROM drink";
     $result = $conn->query($sql);

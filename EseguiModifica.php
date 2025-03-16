@@ -1,12 +1,6 @@
 <?php
 
-$host = "127.0.0.1";
-$user = "root";
-$password = "";
-$database = "mixologymate";
-
-$conn = new mysqli($host, $user, $password, $database);
-
+include 'Connessione.php';
 
 $nickname=$_POST['nickname'];
 $password=$_POST['password'];

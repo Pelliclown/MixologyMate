@@ -1,17 +1,16 @@
 <?php
   
+    include 'Connessione.php';
 
     session_start();
     
     if (isset($_SESSION['nickname'])) {
         
-    // Connessione al database
-    $host = "localhost";
-    $user = "root"; 
-    $password = ""; 
-    $database = "mixologymate";
-
-    $conn = new mysqli($host, $password, $password, $database);
+        $nomeDrink = $_POST['nome'];
+        $creatore = $_SESSION['nickname'];
+        $descrizione = $_POST['descrizione'];
+        
+        
 
     // Cartella in cui salvare le immagini
     $targetDir = "images/";
@@ -35,29 +34,34 @@
             echo "L'immagine è stata caricata con successo.<br>";
 
          
-
-            // Controllo connessione
-            if ($conn->connect_error) {
-                die("Connessione fallita: " . $conn->connect_error);
-            }
-
+            /*
             // Query per salvare il percorso nel database
-            $stmt = $conn->prepare("INSERT INTO images (img_dir) VALUES (?)");
+            $stmt = $connessione->prepare("INSERT INTO images (img_dir) VALUES (?)");
             $stmt->bind_param("s", $targetFilePath);
+            */
+            $stmt = $connessione->prepare("INSERT INTO drink (creatore, immagine, datacreazione) VALUES (?, ?, ?)");
+            $stmt->bind_param("ssi", $creatore, $targetFilePath, $dataCreazione);
+            
 
             if ($stmt->execute()) {
+                $idDrink = $connessione->insert_id;
                 echo "Percorso salvato nel database.<br>";
             } else {
                 echo "Errore durante il salvataggio nel database: " . $stmt->error;
             }
-
             $stmt->close();
 
+            $stmt = $connessione->prepare("INSERT INTO gestionedrink (nome, descrizione, idDrink) VALUES (?, ?, ?)");
+            $stmt->bind_param("ssi",  $nomeDrink, $descrizione, $idDrink);
+            $stmt->execute();
+            $stmt->close();
+
+            
             // Mostra tutte le immagini caricate
             echo "<h2>Galleria Immagini</h2>";
 
-            $sql = "SELECT img_dir FROM images";
-            $result = $conn->query($sql);
+            $sql = "SELECT immagine img_dir FROM drink";
+            $result = $connessione->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -67,32 +71,20 @@
                 echo "Nessuna immagine trovata.";
             }
 
-            $conn->close();
+            $connessione->close();
         } else {
             echo "Errore nel caricamento del file.";
         }
     } else {
         echo "Formato file non valido. Sono consentiti solo JPG, JPEG, PNG e GIF.";
     }
+        
 } else {
     echo "Nessun file selezionato.";
 }
-
-
-
-
-
-        $idCreatore = $_SESSION['nickname'];
-        
-        $stmt = $conn->prepare("INSERT INTO drink (nome, nickname, Immagine, datareazione) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("sssi",  $nomeDrink, $nickname, $Immagine, $datareazione);
-        $stmt->execute();
-
-        $stmt->close();
-        $conn->close();
-        
-     }else{
-         header("location: Login.php");
+   
+    }else{
+        header("location: Login.php");
 }
 
 ?>

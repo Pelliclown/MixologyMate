@@ -4,16 +4,16 @@ use mixologymate;
 
 create table if not exists utenti(
 	nickname varchar(30) primary key not null,
-	password varchar(30) not null,
+	password varchar(255) not null,
 	immagine varchar(200)
 );
  
 create table if not exists drink(
 	idDrink int(5) primary key auto_increment not null,
-	nickname varchar(30),
+	creatore varchar(30),
 	immagine varchar(200),
     dataCreazione date,
-	foreign key (nickname) references utenti(nickname)
+	foreign key (creatore) references utenti(nickname)
 ); 
 
 create table if not exists gestioneDrink(

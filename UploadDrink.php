@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if (isset($_SESSION['nickname'])) {
@@ -152,7 +153,7 @@ if (isset($_SESSION['nickname'])) {
 
         <div>
             <label for="immagine">Carica un'immagine del drink:</label>
-            <input type="file" name="immagine" required>
+            <input type="file" name="image" required>
         </div>
 
         <input type="submit" name="submit" value="Pubblica Drink">
