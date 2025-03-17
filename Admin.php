@@ -5,32 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MixologyMate | Admin</title>
     <link rel="icon" type="image/png" href="immagini/Logo app schede.png">
+    <link rel="stylesheet" href="style/Admin.css">
     <h1>Lista utenti MixologyMate</h1>
 </head>
-<style>
-    table {
-    width: 100%; 
-    border-collapse: collapse;
-    border-radius: 20px;
-}
-    th, td {
-    border: 1px solid black; 
-    padding: 10px; 
-    text-align: left; 
-}
-th {
-    background-color:hsl(189, 100.00%, 53.50%);
-}
-td{
-    background-color:rgb(255, 10, 10);
-}
-h1{
-    text-align: center;
-}
-a{
-    text-decoration: none;
-}
-</style>
 <body>
         <?php
             include 'Connessione.php';

@@ -26,7 +26,5 @@
             <a href="Login.php">Hai già un account? Accedi</a>
         </div>
     </div>
-    
-
 </body>
 </html>

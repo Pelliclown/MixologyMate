@@ -12,6 +12,19 @@ if(mysqli_num_rows($result)>0){
 
 ?>
 <html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="icon" type="image/png" href="immagini/Logo app schede.png">
+        <link rel="stylesheet" href="style/ModificaUtente.css">
+    </head>
+    <body>
+        
+    </body>
+    </html>
     <link rel="icon" type="image/png" href="immagini/Logo app schede.png">
     <h4>Modifica utente</h4>
     <form action="EseguiModifica.php" method="POST">
@@ -27,34 +40,6 @@ if(mysqli_num_rows($result)>0){
     </div>
     <input type="submit" value="Esegui modifica">
     </form>
-    <style>
-        html{
-                size: 150%;
-                align-items: center;
-                background-color: #f0f8ff;
-                font-family: Arial, sans-serif;
-                display: flex;
-                flex-direction: column; 
-                align-items: center; 
-                gap: 10px; 
-                background-image: url('immagini/Logo\ app.png'); 
-                background-size: cover; 
-                background-position: center; 
-                background-size: 400px  400px;
-            }
-            form{
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                top: 100px;
-            }
-            input{
-                padding: 10px;
-                border-radius: 10px;
-                border: 6px ;
-            }
-
-    </style>
 </html>
 
 

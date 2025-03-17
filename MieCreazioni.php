@@ -25,7 +25,6 @@ if (isset($_SESSION['nickname'])) {
     <title>MixologyMate | Profilo di <?php echo htmlspecialchars($nickname); ?></title>
     <link rel="icon" type="image/png" href="immagini/Logo app schede.png">
     <link rel="stylesheet" href="style/MieCreazioni.css">
-
 </head>
 <body>
 

@@ -15,96 +15,7 @@ if(isset($_SESSION['nickname'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MixologyMate | ListaDrink</title>
     <link rel="icon" type="image/png" href="immagini/Logo app schede.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fafafa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        h1 {
-            margin-bottom: 20px;
-            font-size: 2rem;
-            color: #333;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #3897f0;
-        }
-
-        .drink-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin: 20px;
-            width: 300px;
-            padding: 15px;
-            transition: transform 0.3s;
-        }
-
-        .drink-card:hover {
-            transform: scale(1.05);
-        }
-
-        .drink-card img {
-            width: 100%;
-            border-radius: 10px;
-            height: 200px;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-
-        .drink-info {
-            text-align: left;
-        }
-
-        .drink-info h3 {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .drink-info p {
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .creator {
-            font-weight: bold;
-            margin-top: 10px;
-            color: #3897f0;
-        }
-
-        table {
-            display: none; 
-        }
-
-    </style>
+    <link rel="stylesheet" href="style/ListaDrinkLogged.css">
 </head>
 <body>
 
@@ -118,7 +29,7 @@ if(isset($_SESSION['nickname'])){
     <?php
 
     $sql = "SELECT * FROM drink";
-    $result = $conn->query($sql);
+    $result = $connessione->query($sql);
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
