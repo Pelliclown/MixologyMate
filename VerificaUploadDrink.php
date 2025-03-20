@@ -34,11 +34,7 @@
             echo "L'immagine è stata caricata con successo.<br>";
 
          
-            /*
-            // Query per salvare il percorso nel database
-            $stmt = $connessione->prepare("INSERT INTO images (img_dir) VALUES (?)");
-            $stmt->bind_param("s", $targetFilePath);
-            */
+           
             $stmt = $connessione->prepare("INSERT INTO drink (creatore, immagine, datacreazione) VALUES (?, ?, ?)");
             $stmt->bind_param("ssi", $creatore, $targetFilePath, $dataCreazione);
             

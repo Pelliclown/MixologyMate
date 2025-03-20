@@ -33,49 +33,38 @@ if(isset($_SESSION['nickname'])){
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $idCreatore = $row['idCreatore'];
-            $idImmagine = $row['idImmagine'];
-
             
-            $stmt = $conn->prepare("SELECT nickname FROM utenti WHERE idUtente = ?");
-            $stmt->bind_param("i", $idCreatore);
-            $stmt->execute();
-            $stmt->store_result();
-            $stmt->bind_result($nickname);
-            $stmt->fetch();
-
             
-            $stmt = $conn->prepare("SELECT tipo, immagine FROM immaginidrink WHERE idimmagine = ?");
-            $stmt->bind_param("i", $idImmagine);
+            $stmt = $connessione->prepare("
+                SELECT drink.idDrink, drink.creatore, drink.immagine, gestioneDrink.nome, gestioneDrink.descrizione, gestioneDrink.idDrink 
+                FROM drink 
+                JOIN gestionedrink ON drink.idDrink = gestionedrink.idDrink
+            ");
             $stmt->execute();
-            $stmt->store_result();
-            $stmt->bind_result($tipo, $immagine);
-            $stmt->fetch();
 
-            $idDrink = $row['idDrink'];
+
 
             echo '<div class="drink-card">';
-            if ($immagine) {
-                $immagineBase64 = base64_encode($immagine);
-                echo "<a href='PaginaDrink.php?idDrink=" . $idDrink."'>
-                        <img src='data:$tipo;base64,$immagineBase64' alt='Immagine del drink'>
-                      </a>";
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<img src='" . $row["immagine"] . "' width='200' style='margin:10px;'><br>";
+                    echo '<div class="drink-info">';
+                    echo "<h3>" . $row['nome'] . "</h3>";
+                    echo "<p class='creator'>Creato da:". $row['creatore'] . "</p>";
+                    echo '</div>';
+                }
             } else {
-                echo "<img src='default-image.jpg' alt='Immagine del drink'>"; 
+                echo "Nessuna immagine trovata.";
             }
             
-
-            echo '<div class="drink-info">';
-            echo "<h3>" . $row['nome'] . "</h3>";
-            echo "<p class='creator'>Creato da: $nickname</p>";
-            echo '</div>';
-            echo '</div>';
+ 
+            
         }
     } else {
         echo "Database vuoto";
     }
 
-    $conn->close();
+    $connessione->close();
 }else{
     header("location: Login.php");
 }
