@@ -9,18 +9,19 @@ create table if not exists utenti(
 );
  
 create table if not exists drink(
-	idDrink int(5) primary key auto_increment not null,
+	idDrink int(5) primary key auto_increment,
+	nomeDrink varchar(200) not null,
 	creatore varchar(30),
 	immagine varchar(200),
-    dataCreazione date,
+    	dataCreazione date,
 	foreign key (creatore) references utenti(nickname)
 ); 
 
 create table if not exists gestioneDrink(
 	nome varchar(20) primary key not null,
 	descrizione varchar(250) not null,
-    idDrink int(5) not null,
-    foreign key (idDrink) references drink(idDrink)
+	idDrink int(5) not null,
+	foreign key (idDrink) references drink(idDrink)
 );
 
 create table if not exists recensioni(
@@ -28,7 +29,7 @@ create table if not exists recensioni(
 	descrizione varchar(250) not null,
 	nicknameCreatore varchar(30),
 	numeroStelle int(1) not null,
-    dataCreazione date,
+        dataCreazione date,
 	idDrink int(5) not null,
 	foreign key (nicknameCreatore) references utenti(nickname),
 	foreign key (idDrink) references drink(idDrink)
@@ -48,10 +49,16 @@ create table if not exists associazioneIngredienti(
 );
 
 create table if not exists preferiti(
-	idDrink int(5),
+	idDrink int(5) primary key,
 	nickname varchar(30), 
-	foreign key (nickname) references utenti(nickname),
 	foreign key (idDrink) references drink(idDrink)
 );
+create table if not exists associazionePreferiti(
+	nickname varchar(30),
+	idDrink int(5),
+	primary key (nickname, idDrink),
+	foreign key (nickname) references utenti(nickname),
+	foreign key (idDrink) references preferiti(idDrink)
+)
 
 
