@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px; /* Larghezza massima del contenuto */
+    margin: 0 auto; /* Centra il contenitore orizzontalmente */
+    padding: 20px; /* Spaziatura interna */
+    background-color: white; /* Colore di sfondo */
+    border: 1px solid rgb(227, 227, 227); /* Bordo */
+    border-radius: 5px;
+}
+
+.barraSopra {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    padding: 10px;
+}
+
+.logoHome {
+    height: 60px;
+    width: 60px;
+}
+
+.listaDrink {
+    font-size: 50px;
+    font-family: 'Gill Sans';
+    font-weight: 200;
+    margin: 1px;
+}
+
+.bottoneAccedi {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial;
+    font-weight: bold;
+    border-color: solid black;
+    border-radius: 100px;
+    padding: 13px 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.bottoneAccedi:hover {
+    background-color: rgb(56, 56, 56);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.sceltaIngredienti {
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center; /* Centra il testo orizzontalmente */
+    margin: 130px 0; /* Spaziatura sopra e sotto */
+}
+
+.cheIngredientiHai {
+    margin: 0;
+}
+
+/* Nuovo contenitore per la barra di ricerca */
+.search-section {
+    display: flex;
+    justify-content: center; /* Centra la barra di ricerca orizzontalmente */
+    margin: 20px 0; /* Spaziatura sopra e sotto */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Occupa tutto lo spazio disponibile */
+    max-width: 600px; /* Larghezza massima della barra di ricerca */
+}
+
+#search-input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%; /* Occupa tutto lo spazio disponibile */
+    border-radius: 25px;
+}
+
+#search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
