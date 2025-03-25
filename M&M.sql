@@ -54,10 +54,10 @@ create table if not exists preferiti(
 	foreign key (idDrink) references drink(idDrink)
 );
 create table if not exists associazionePreferiti(
-	nickname varchar(30),
+	nicknameUtente varchar(30),
 	idDrink int(5),
-	primary key (nickname, idDrink),
-	foreign key (nickname) references utenti(nickname),
+	primary key (nicknameUtente, idDrink),
+	foreign key (nicknameUtente) references utenti(nickname),
 	foreign key (idDrink) references preferiti(idDrink)
 )
 
