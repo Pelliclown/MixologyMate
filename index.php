@@ -10,9 +10,9 @@
     <div class="container">
         <!-- Barra superiore -->
         <div class="barraSopra">
-            <a href="index.html"><img src="immagini/logoHome.png" alt="Logo" class="logoHome"></a>
+            <a href="index.html"><img src="immagini/Logo app schede.png" alt="Logo" class="logoHome"></a>
             <h1 class="listaDrink">Lista Drink</h1>
-            <a href="MixologyMate-main/Login.php"><button class="bottoneAccedi">Accedi</button></a>
+            <a href="Login.php"><button class="bottoneAccedi">Accedi</button></a>
         </div>
 
         <!-- Titolo -->
@@ -30,6 +30,6 @@
         <div></div>
     </div>
 
-    <script src="script.js"></script>
+    
 </body>
 </html>
