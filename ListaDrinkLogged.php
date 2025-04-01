@@ -28,41 +28,27 @@ if(isset($_SESSION['nickname'])){
 
     <?php
 
-    $sql = "SELECT * FROM drink";
-    $result = $connessione->query($sql);
+$sql = "SELECT drink.idDrink, drink.creatore, drink.immagine, gestioneDrink.nome, gestioneDrink.descrizione 
+FROM drink 
+JOIN gestioneDrink ON drink.idDrink = gestioneDrink.idDrink";
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            
-            
-            $stmt = $connessione->prepare("
-                SELECT drink.idDrink, drink.creatore, drink.immagine, gestioneDrink.nome, gestioneDrink.descrizione, gestioneDrink.idDrink 
-                FROM drink 
-                JOIN gestionedrink ON drink.idDrink = gestionedrink.idDrink
-            ");
-            $stmt->execute();
+$result = $connessione->query($sql);
 
-
-
-            echo '<div class="drink-card">';
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<img src='" . $row["immagine"] . "' width='200' style='margin:10px;'><br>";
-                    echo '<div class="drink-info">';
-                    echo "<h3>" . $row['nome'] . "</h3>";
-                    echo "<p class='creator'>Creato da:". $row['creatore'] . "</p>";
-                    echo '</div>';
-                }
-            } else {
-                echo "Nessuna immagine trovata.";
-            }
-            
- 
-            
-        }
-    } else {
-        echo "Database vuoto";
-    }
+if ($result->num_rows > 0) {
+while ($row = $result->fetch_assoc()) {
+echo "<a href='PaginaDrink.php?id=" . $row["idDrink"] . "' class='drink-link'>";
+echo '<div class="drink-card">';
+echo "<img src='" . htmlspecialchars($row["immagine"]) . "' width='200' alt='Drink Image'>";
+echo '<div class="drink-info">';
+echo "<h3>" . htmlspecialchars($row['nome']) . "</h3>";
+echo "<p class='creator'>Creato da: " . htmlspecialchars($row['creatore']) . "</p>";
+echo '</div>';
+echo '</div>';
+echo "</a>";
+}
+} else {
+echo "Nessun drink trovato.";
+}
 
     $connessione->close();
 }else{

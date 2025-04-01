@@ -5,17 +5,14 @@ include 'Connessione.php';
 session_start();
 
 if (isset($_SESSION['nickname'])) {
-    $idUtente = $_SESSION['nickname']; 
+    $nickname = $_SESSION['nickname']; 
 
-    $stmt = $connessione->prepare("SELECT d.*, i.tipo, i.immagine FROM drink d
-                             JOIN immaginidrink i ON d.idImmagine = i.idimmagine
-                             WHERE d.idCreatore = ?");
-    $stmt->bind_param("i", $idUtente);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql = "SELECT drink.idDrink, drink.creatore, drink.immagine, gestioneDrink.nome, gestioneDrink.descrizione 
+    FROM drink 
+    JOIN gestioneDrink ON drink.idDrink = gestioneDrink.idDrink
+    WHERE mickname = $nickname";
 
-    $conn->close();
-?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="it">

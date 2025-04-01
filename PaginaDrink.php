@@ -24,7 +24,10 @@ if(isset($_SESSION['nickname'])){
 $idDrink = $_GET['idDrink'];
 
 
-$sql = "SELECT * FROM drink WHERE idDrink = ?";
+$sql = "
+SELECT * FROM gestionedrink
+JOIN drink on drink.idDrink = gestionedrink
+WHERE idDrink = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $idDrink);
 $stmt->execute();
