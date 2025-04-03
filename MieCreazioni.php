@@ -6,12 +6,6 @@ session_start();
 
 if (isset($_SESSION['nickname'])) {
     $nickname = $_SESSION['nickname']; 
-
-    $sql = "SELECT drink.idDrink, drink.creatore, drink.immagine, gestioneDrink.nome, gestioneDrink.descrizione 
-    FROM drink 
-    JOIN gestioneDrink ON drink.idDrink = gestioneDrink.idDrink
-    WHERE mickname = $nickname";
-
  ?>
 
 <!DOCTYPE html>
@@ -25,31 +19,31 @@ if (isset($_SESSION['nickname'])) {
 </head>
 <body>
 
-    <h1>Profilo di <?php echo htmlspecialchars($nickname); ?></h1>
+    <h1>Il tuo profilo</h1>
 
     <div class="drink-grid">
         <?php
+
+        $sql = "SELECT *
+                FROM drink 
+                JOIN gestioneDrink ON drink.idDrink = gestioneDrink.idDrink
+                WHERE drink.creatore = ?";
+        $stmt = $connessione->prepare($sql);
+        $stmt->bind_param("s", $nickname);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $idDrink = $row['nickname'];
-                $immagine = $row['immagine'];
-                $tipo = $row['tipo'];
-
+                echo "<a href='PaginaDrink.php?idDrink=" . $row["idDrink"] . "' class='drink-link'>";
                 echo '<div class="drink-card">';
-                if ($immagine) {
-                    $immagineBase64 = base64_encode($immagine);
-                    echo "<a href='PaginaDrink.php?idDrink=" . $idDrink . "'>
-                            <img src='data:$tipo;base64,$immagineBase64' alt='Immagine del drink'>
-                          </a>";
-                } else {
-                    echo "<img src='default-image.jpg' alt='Immagine del drink'>";
-                }
-
+                echo "<img src='" . htmlspecialchars($row["immagine"]) . "' width='200' alt='Drink Image'>";
                 echo '<div class="drink-info">';
-                echo "<h3>" . htmlspecialchars($row['nome']) . "</h3>";
-                echo '<p class="creator">Creato da: ' . htmlspecialchars($nickname) . '</p>';
+                echo "<h3 style='margin-top: 10px;'>" . htmlspecialchars($row['nome']) . "</h3>";
+                echo "<p class='creator'>Creato da: " . htmlspecialchars($row['creatore']) . "</p>";
                 echo '</div>';
                 echo '</div>';
+                echo "</a>";
             }
         } else {
             echo "<p>Nessun drink trovato.</p>";

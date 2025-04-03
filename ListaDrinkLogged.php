@@ -5,7 +5,7 @@ include 'Connessione.php';
 session_start();
 
 if(isset($_SESSION['nickname'])){
-
+$_SESSION['banner'] = 0;
 
 ?>
 <!DOCTYPE html>
@@ -35,17 +35,17 @@ JOIN gestioneDrink ON drink.idDrink = gestioneDrink.idDrink";
 $result = $connessione->query($sql);
 
 if ($result->num_rows > 0) {
-while ($row = $result->fetch_assoc()) {
-echo "<a href='PaginaDrink.php?id=" . $row["idDrink"] . "' class='drink-link'>";
-echo '<div class="drink-card">';
-echo "<img src='" . htmlspecialchars($row["immagine"]) . "' width='200' alt='Drink Image'>";
-echo '<div class="drink-info">';
-echo "<h3>" . htmlspecialchars($row['nome']) . "</h3>";
-echo "<p class='creator'>Creato da: " . htmlspecialchars($row['creatore']) . "</p>";
-echo '</div>';
-echo '</div>';
-echo "</a>";
-}
+    while ($row = $result->fetch_assoc()) {
+        echo "<a href='PaginaDrink.php?idDrink=" . $row["idDrink"] . "' class='drink-link'>";
+        echo '<div class="drink-card">';
+        echo "<img src='" . htmlspecialchars($row["immagine"]) . "' width='200' alt='Drink Image'>";
+        echo '<div class="drink-info">';
+        echo "<h3 style='margin-top: 10px;'>" . htmlspecialchars($row['nome']) . "</h3>";
+        echo "<p class='creator'>Creato da: " . htmlspecialchars($row['creatore']) . "</p>";
+        echo '</div>';
+        echo '</div>';
+        echo "</a>";
+    }
 } else {
 echo "Nessun drink trovato.";
 }

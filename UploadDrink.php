@@ -66,7 +66,7 @@ if (isset($_SESSION['nickname'])) {
 
     </form>
 
-    <a href="ListaDrink.php" class="back-button">Torna alla lista dei drink</a>
+    <a href="ListaDrinkLogged.php" class="back-button">Torna alla lista dei drink</a>
 
 </body>
 </html>

@@ -9,16 +9,22 @@ include 'Connessione.php';
 $descrizione = $_POST['descrizione'];
 $idDrink = $_POST['idDrink'];
 $numeroStelle = $_POST['numeroStelle'];
-$idUtente = $_SESSION['idUtente'];
+$nickname = $_SESSION['nickname'];
 
 
 
-$stmt = $conn->prepare("INSERT INTO recensioni (descrizione, idCreatore, idDrink, numeroStelle) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("siis",  $descrizione, $idUtente, $idDrink, $numeroStelle);
+$stmt = $connessione->prepare("INSERT INTO recensioni (descrizione, nicknameCreatore , idDrink, numeroStelle) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssis",  $descrizione, $nickname, $idDrink, $numeroStelle);
 $stmt->execute();
 $stmt->close();
-   
+
+session_start(); 
+
+$_SESSION['banner'] = 1;
+
 header("location: PaginaDrink.php?idDrink=".$idDrink);
+
+$connessione->close();
 
 }else{
     header("location: Login.php");

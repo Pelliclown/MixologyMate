@@ -49,15 +49,19 @@ h1 {
 .drink-info {
     padding: 10px;
     text-align: center;
+    text-decoration: none;
 }
 
 .drink-info h3 {
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 10px;
+    text-decoration: none;
 }
+
 
 .creator {
     font-weight: bold;
     color: #3897f0;
+    text-decoration: none;
 }

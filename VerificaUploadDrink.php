@@ -53,20 +53,23 @@
             $stmt->close();
 
             
-            // Mostra tutte le immagini caricate
-            echo "<h2>Galleria Immagini</h2>";
+            // Mostra l'immagine caricata
 
-            $sql = "SELECT immagine img_dir FROM drink";
-            $result = $connessione->query($sql);
+            $sql = "SELECT immagine FROM drink WHERE idDrink = ?";
+            $stmt = $connessione->prepare($sql);
+            $stmt->bind_param("i", $idDrink);
+            $stmt->execute();
+            $stmt->bind_result($immagine);
+            $stmt->fetch();
+            $stmt->close();
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<img src='" . $row["img_dir"] . "' width='200' style='margin:10px;'><br>";
-                }
-            } else {
-                echo "Nessuna immagine trovata.";
-            }
+            echo "<img src='$immagine' alt='Immagine del drink'>";
 
+            ?>
+
+                <a href="ListaDrinkLogged.php" style="text-decoration: none; color:black">Torna alla Home</a>
+
+            <?php
             $connessione->close();
         } else {
             echo "Errore nel caricamento del file.";
