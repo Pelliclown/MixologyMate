@@ -19,17 +19,16 @@
 include 'Connessione.php';
 
 $sql = "SELECT * FROM drink";
-$result = $conn->query($sql);
+$result = $connessione->query($sql);
 
 if ($result->num_rows > 0) {
     echo '<table>
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>TempoPreparazione</th>
             <th>Ingredienti</th>
             <th>Descrizione</th>
-            <th>IdCreatore</th> 
+            <th>Creatore</th> 
             <th>ImmagineDrink</th>   
         </tr>';
 
@@ -37,29 +36,10 @@ if ($result->num_rows > 0) {
         echo "<tr>";
         echo "<td>" . $row['idDrink'] . "</td>";
         echo "<td>" . $row['nome'] . "</td>";
-        echo "<td>" . $row['tempoPreparazione'] . "</td>";
         echo "<td>" . $row['ingredienti'] . "</td>";
         echo "<td>" . $row['descrizione'] . "</td>";
-        echo "<td>" . $row['idCreatore'] . "</td>";
-
-        $idImmagine = $row['idImmagine'];
-
-        $stmt = $conn->prepare("SELECT tipo, immagine FROM immaginidrink WHERE idimmagine = ?");
-        $stmt->bind_param("i", $idImmagine);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result($tipo, $immagine);
-        $stmt->fetch();
-
-       
-        if ($immagine) {
-            $immagineBase64 = base64_encode($immagine);
-            echo "<td><img src='data:$tipo;base64," . base64_encode($immagine) . "' 
-                alt='Immagine del drink' 
-                style='width: 150px; height: auto; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2);'></td>";
-        } else {
-            echo "<td>Immagine non trovata</td>";
-        }
+        echo "<td>" . $row['creatore'] . "</td>";
+        echo "<img src='" . $row["immagine"] . "' class='drink-image'><br>";
 
         echo "</tr>";
     }
@@ -68,6 +48,6 @@ if ($result->num_rows > 0) {
     echo "Database vuoto";
 }
 
-$conn->close();
+$connessione->close();
 ?>
 

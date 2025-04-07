@@ -5,7 +5,8 @@ use mixologymate;
 create table if not exists utenti(
 	nickname varchar(30) primary key not null,
 	password varchar(255) not null,
-	immagine varchar(200)
+	immagine varchar(200),
+	ban int(1) not null default 0
 );
  
 create table if not exists drink(

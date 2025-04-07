@@ -28,11 +28,14 @@ $_SESSION['banner'] = 0;
 
     <?php
 
-$sql = "SELECT drink.idDrink, drink.creatore, drink.immagine, gestioneDrink.nome, gestioneDrink.descrizione 
-FROM drink 
-JOIN gestioneDrink ON drink.idDrink = gestioneDrink.idDrink";
 
-$result = $connessione->query($sql);
+
+$stmt = $connessione->prepare("SELECT drink.idDrink, drink.creatore, drink.immagine, gestioneDrink.nome, gestioneDrink.descrizione 
+FROM drink 
+JOIN gestioneDrink ON drink.idDrink = gestioneDrink.idDrink");
+$stmt->execute();
+$result = $stmt->get_result();
+
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
